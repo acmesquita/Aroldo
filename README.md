@@ -1,24 +1,11 @@
-# README
+## Aroldo ## 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Sistema para testar os conhecimento aprendidos na diciplina de TEPS do 6º periodo do curso de Análise e Desenvolvimento de Sistemas
 
-Things you may want to cover:
+Aroldo é um sistema de localização de bares, com ele é possível cadastrar, atualizar, visualizar (através dó google maps) e deletar os pontos.
 
-* Ruby version
+Utilizando
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* RGeo - https://github.com/rgeo/rgeo
+* Ruby on Rails
+* Api do Google Maps
