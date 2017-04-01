@@ -12,29 +12,48 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+
 
 var mapa;
-var markers = [];
+var titulos = [];
 function initMap() {
-  mapa = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -5.1024978, lng: -42.8045211},
-    zoom: 12
-  });
-
+	if (mapa == null){
+	  mapa = new google.maps.Map(document.getElementById('map'), {
+	    center: {lat: -5.1024978, lng: -42.8045211},
+	    zoom: 12
+	  });
+	}
 }
+
 function marcarMapa(latitude, longitude, titulo) {
-	mapa = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: latitude, lng: longitude},
-		zoom: 14
-	});
-	var marker = new google.maps.Marker({
-	    position: new google.maps.LatLng(latitude, longitude),
-	    title: titulo,
-	    map: mapa,
-	    icon: "<%= asset_path('marke.png')%>"
-	});	
-	markers.push(marker);
-}
 
+	if (titulos.indexOf(titulo) == -1){
+		var marker = new google.maps.Marker({
+		    position: new google.maps.LatLng(latitude, longitude),
+		    title: titulo,
+		    map: mapa,
+		    icon: "<%= asset_path('marke.png')%>"
+		});
+		titulos.push(titulo, marker);		
+	}
+	else{
+		titulos.pop(titulos.indexOf(titulo)).setMap(null);
+		titulos = titulos.filter(item => item !== titulo);
+	}
+	
+}
+function valida(){
+ 
+ //valida campos checkbox das bebidas 
+    var todos_inputs = document.getElementsByTagName('input');    
+    for (var i=0; i<todos_inputs.length; i++){
+        if(todos_inputs[i].id == "marcados"){
+             if(todos_inputs[i].checked == true){
+             	todos_inputs[i].checked = false;
+             }
+             else{
+             	todos_inputs[i].checked = true;
+         	}
+        }
+     }
+}

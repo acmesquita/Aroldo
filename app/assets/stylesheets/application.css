@@ -31,3 +31,8 @@
 	padding: 20px;
 
 }
+
+.titulo:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}

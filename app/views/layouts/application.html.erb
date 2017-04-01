@@ -4,8 +4,8 @@
     <title>Aroldo</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
      <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
       #map { height: 100%; }
@@ -19,9 +19,8 @@
   <div class="conteudo">
     <%= yield %>
   </div>
- 
-    
-    <script async defer
+
+    <script 
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFU4KiWEHgcWbdCPMCszFyW2-pPyZ4aqo&callback=initMap">
     </script>
   </body>

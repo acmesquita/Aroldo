@@ -2,29 +2,30 @@
 
 <h1>Bares</h1>
 
-<table>
+<table id="table_bares">
   <thead>
     <tr>
+    <th></th>
       <th>Título</th>
-      <th colspan="3">Localização</th>
-      <th colspan="2"></th>
+      <th colspan="2">Localização</th>
+      <th colspan="2">Ações</th>
     </tr>
   </thead>
 
   <tbody>
     <% @bars.each do |bar| %>
       <tr>
-        <td><%= link_to bar.titulo , bar%></td>
+        <td><input type="checkbox" name="marcados" id="marcados" value="marcados" onchange="marcarMapa(<%=bar.localizacao.x%>, <%=bar.localizacao.y%>, '<%=bar.titulo%>');"/></td>
+        <td><span><%=bar.titulo%></span></td>
         <td><%= bar.localizacao.x %></td>
         <td><%= bar.localizacao.y %></td>
         <td><%= link_to 'Editar', edit_bar_path(bar) %></td>
         <td><%= link_to 'Deletar', bar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'Marcar Bar', new_bar_path %>
+
