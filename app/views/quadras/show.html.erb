@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @quadra.descricao %>
+</p>
+
+<p>
+  <strong>Geom:</strong>
+  <%= @quadra.geom %>
+</p>
+
+<%= link_to 'Edit', edit_quadra_path(@quadra) %> |
+<%= link_to 'Back', quadras_path %>

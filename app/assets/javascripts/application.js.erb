@@ -98,8 +98,8 @@ function initMap() {
 	    infowindow.open(map, marker);
 	  });*/
 	var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 3,
-    center: {lat: 0, lng: -180},
+    zoom: 15,
+    center: {lat: -5.1024978, lng: -42.8045211},
     mapTypeId: 'terrain'
   });
 
@@ -117,7 +117,7 @@ function initMap() {
     strokeWeight: 2
   });
 
-  flightPath.setMap(map);
+  /*flightPath.setMap(map);*/
 
    // Define the LatLng coordinates for the polygon's path.
   var triangleCoords = [
@@ -147,7 +147,7 @@ function initMap() {
     map: map,
     editable: true,
     draggable: true,
-  geodesic: true,
+    geodesic: true,
     bounds: {
       north: 33.685,
       south: 33.671,
@@ -158,23 +158,42 @@ function initMap() {
 
  //Criar retangulo ao clicar 
    map.addListener('rightclick', function(e) {
+	var infowindow = new google.maps.InfoWindow;
+	    var bounds = {
+          north: e.latLng.lat() ,
+          south:  e.latLng.lat()- 0.0005 ,
+          east:  e.latLng.lng() + 0.0005,
+          west:  e.latLng.lng() 
+        };
+
+
 	
 	var rectangle = new google.maps.Rectangle({
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
-    map: map,
-    editable: true,
-    draggable: true,
-  geodesic: true,
-    bounds: {
-      north: 33.685,
-      south: 33.671,
-      east: -116.234,
-      west: -116.251
-    }
-  });   
+	    strokeColor: '#F60000',
+	    strokeOpacity: 0.8,
+	    strokeWeight: 2,
+	    fillColor: '#FF0000',
+	    fillOpacity: 0.35,
+	    map: map,
+	    geodesic: true,
+	    bounds: bounds
+	  });  
+
+	
+	rectangle.addListener('click', function (e) {
+		rectangle.setEditable(true);
+		rectangle.setDraggable(true);
+		console.log(rectangle.getBounds().getNorthEast().lat() 
+			+ " , " + rectangle.getBounds().getNorthEast().lng() 
+			+ " , " +rectangle.getBounds().getSouthWest().lat() 
+			+ " , " + rectangle.getBounds().getSouthWest().lng());
+	}); 
+
+	map.addListener('click', function (argument) {
+		rectangle.setEditable(false);
+		rectangle.setDraggable(false);		
+	})
+
    });
+
 }
