@@ -16,14 +16,69 @@
 
 var mapa;
 var titulos = [];
-/*function initMap() {
+var quadrados = [];
+function initMap() {
 	if (mapa == null){
 	  mapa = new google.maps.Map(document.getElementById('map'), {
 	    center: {lat: -5.1024978, lng: -42.8045211},
-	    zoom: 12
+	    zoom: 13
 	  });
 
-	  google.maps.event.addListener(map, 'bounds_changed', function() {
+	  var infowindow = new google.maps.InfoWindow;
+	  var marker = new google.maps.Marker;
+	  marker.setMap(mapa);
+	  mapa.addListener('click', function(e){
+	  	/*mapa.setCenter(e.latLng);
+	    marker.setPosition(e.latLng);
+	    infowindow.setContent("Latitude: " + e.latLng.lat() +
+	      "<br>" + "Longitude: " + e.latLng.lng());
+	    infowindow.open(map, marker);
+
+	    var loc = e.latLng.lat() + " " + e.latLng.lng();
+	    $('#bar_localizacao').attr('value', loc);*/
+	    var lat1 = 37.41463623043073;
+      var lat2 = 37.46915383933881;
+      var lng1 = -122.1848153442383;
+      var lng2 = -122.09898465576174;  
+
+      var rectangle = new google.maps.Polygon({
+         paths : [
+           new google.maps.LatLng(lat1, lng1),
+           new google.maps.LatLng(lat2, lng1),
+           new google.maps.LatLng(lat2, lng2),
+           new google.maps.LatLng(lat1, lng2)
+         ],
+        strokeOpacity: 0,
+        fillOpacity : 0,
+        map : mapa
+      });
+
+		/*var rectangle = new google.maps.Rectangle({
+	    strokeColor: '#FF0000',
+	    strokeOpacity: 0.8,
+	    strokeWeight: 2,
+	    fillColor: '#FF0000',
+	    fillOpacity: 0.35,
+	    map: mapa,
+	    editable: true,
+	    draggable: true,
+	    geodesic: true,
+	    bounds: {
+	      north: 33.685,
+	      south: 33.671,
+	      east: -116.234,
+	      west: -116.251
+	    }
+		});*/
+		console.log(rectangle.getBounds().getNorthEast().lat() +" "+rectangle.getBounds().getNorthEast().lng() 
+			+ " , " + rectangle.getBounds().getSouthWest().lat()+" "+ rectangle.getBounds().getNorthEast().lng() 
+			+ " , " +rectangle.getBounds().getSouthWest().lat() + " " +  rectangle.getBounds().getSouthWest().lng()
+			+ " , " + rectangle.getBounds().getNorthEast().lat() + " " + rectangle.getBounds().getSouthWest().lng());
+	  });
+
+
+
+	 /* google.maps.event.addListener(map, 'bounds_changed', function() {
       var lat1 = 37.41463623043073;
       var lat2 = 37.46915383933881;
       var lng1 = -122.1848153442383;
@@ -43,8 +98,8 @@ var titulos = [];
       google.maps.event.addListener(rectangle, 'click', function(args) {  
          console.log('latlng', args.latLng);
     });
-  });
-	}
+  });*/
+}
 }
 
 function marcarMapa(latitude, longitude, titulo) {
@@ -78,9 +133,9 @@ function valida(){
          	}
         }
      }
-}*/
+}
 
-function initMap() {
+/*function initMap() {
 /*    var myOptions = {
       zoom: 6,
       center: new google.maps.LatLng(-33.8688, 151.2093)
@@ -97,7 +152,7 @@ function initMap() {
 	      "<br>" + "Longitude: " + e.latLng.lng());
 	    infowindow.open(map, marker);
 	  });*/
-	var map = new google.maps.Map(document.getElementById('map'), {
+	/*var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: {lat: -5.1024978, lng: -42.8045211},
     mapTypeId: 'terrain'
@@ -120,7 +175,7 @@ function initMap() {
   /*flightPath.setMap(map);*/
 
    // Define the LatLng coordinates for the polygon's path.
-  var triangleCoords = [
+  /*var triangleCoords = [
     {lat: 25.774, lng: -80.190},
     {lat: 18.466, lng: -66.118},
     {lat: 32.321, lng: -64.757},
@@ -195,5 +250,4 @@ function initMap() {
 	})
 
    });
-
-}
+*/
